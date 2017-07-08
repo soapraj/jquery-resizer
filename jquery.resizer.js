@@ -15,11 +15,10 @@
                 return this.each(function() {
                     // reference to the jQuery version of the current DOM element
                     currentElement = $(this).find(".resize-handle");
-                    console.log(currentElement, " ==> ", currentElement.length);
+
                     if(!currentElement.length){
                         currentElement = $("<div class='resize-handle'></div>").appendTo($(this));
                     }
-                    console.log(currentElement, " ==> ", currentElement.length);
                     $(currentElement).mousedown(function(event){
                         event.preventDefault();
                         currentElement = $(this);
@@ -29,7 +28,7 @@
                         });
                         $(document).on('mousemove.resize', helpers.mouseMoveHandler);
                         $(document).on('mouseup.resize', helpers.mouseUpHandler);
-                    }); 
+                    });
                 });
             }
         }
@@ -40,7 +39,7 @@
                 var newHeight = $(currentElement).data("resize-data").startHeight + (event.pageY - $(currentElement).data("resize-data").startY);
                 $(currentElement).parent().css("height", newHeight + "px");
             },
-         
+
             mouseUpHandler: function (event) {
                 currentElement = null;
                 $(document).off('mousemove.resize', helpers.mouseMoveHandler);
